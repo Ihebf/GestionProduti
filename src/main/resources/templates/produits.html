@@ -41,8 +41,12 @@
                     <td th:text="${p.prix}"></td>
                     <td th:text="${p.quantitie}"></td>
                     <td th:text="${p.cat.nom}"></td>
-                    <td><a th:href="@{/delete/{id}(id=${p.id})}" class="btn btn-danger">
-                        <span class="fa fa-trash"></span></a></td>
+                    <div>
+                        <td><a th:href="@{/delete/{id}(id=${p.id})}" class="btn btn-danger">
+                            <span class="fa fa-trash"></span></a></td>
+                        <td><a th:href="@{/edit/{id}(id=${p.id})}" class="btn btn-warning">
+                            <span class="fa-solid fa-pen"></span></a></td>
+                    </div>
                 </tr>
                 </tbody>
             </table>

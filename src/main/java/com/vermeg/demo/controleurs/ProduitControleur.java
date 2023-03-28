@@ -30,6 +30,7 @@ public class ProduitControleur {
 
     @GetMapping("/addProduct")
     public String addProduct(Model m){
+        m.addAttribute("data", new Produit());
         m.addAttribute("categories",sc.getAllCategories());
         return "addProduct";
     }
@@ -38,5 +39,13 @@ public class ProduitControleur {
     public String saveProduct(@ModelAttribute Produit produit){
         sp.saveProduit(produit);
         return "redirect:/home";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editProduct(@PathVariable("id") Integer id,Model m){
+        Produit product = sp.getProduit(id);
+        m.addAttribute("data", product);
+        m.addAttribute("categories",sc.getAllCategories());
+        return "addProduct";
     }
 }

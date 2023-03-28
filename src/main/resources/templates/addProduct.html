@@ -13,24 +13,24 @@
         <form method="post" th:action="@{/save}">
             <div class="form-group">
                 <label for="nom">nom</label>
-                <input type="text" class="form-control" id="nom" placeholder="nom" name="nom">
+                <input type="text" class="form-control" id="nom" placeholder="nom" name="nom" th:value="${data.nom}">
             </div>
             <div class="form-group">
                 <label for="prix">prix</label>
-                <input type="number" class="form-control" id="prix" placeholder="prix" name="prix">
+                <input type="number" class="form-control" id="prix" placeholder="prix" name="prix" th:value="${data.prix}">
             </div>
             <div class="form-group">
                 <label for="quantite">quantité</label>
-                <input type="number" class="form-control" id="quantite" placeholder="quantitie" name="quantitie">
+                <input type="number" class="form-control" id="quantite" placeholder="quantitie" name="quantitie" th:value="${data.quantitie}">
             </div>
             <div class="form-group">
                 <label for="categorie">Categorie</label>
                 <select name="cat" id="categorie" required="required">
-                    <option selected="selected" hidden=""></option>
-                    <option th:each="c:${categories}" th:value="${c.id}" th:text="${c.nom}"></option>
+                    <option selected="selected" hidden="" ></option>
+                    <option th:each="c:${categories}" th:value="${c.id}" th:text="${c.nom}" th:selected="${data.cat!=null && data.cat.id == c.id}"></option>
                 </select>
             </div>
-
+            <input type="hidden" name="id" th:value="${data.id}">
             <button type="submit" class="btn btn-primary" >Submit</button>
         </form>
     </div>
