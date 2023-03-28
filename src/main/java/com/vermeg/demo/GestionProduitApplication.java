@@ -24,7 +24,7 @@ public class GestionProduitApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        for (int i=0;i<20;i++){
+        for (int i=0;i<1000;i++){
             Categorie c1 = new Categorie(null,"informatique",null);
             Categorie c2 = new Categorie(null,"bureatique",null);
             Categorie c3 = new Categorie(null,"electronique",null);
