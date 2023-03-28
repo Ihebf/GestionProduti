@@ -3,6 +3,8 @@ package com.vermeg.demo.service;
 import com.vermeg.demo.entities.Produit;
 import com.vermeg.demo.repositories.ProduitRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,9 +26,10 @@ public class ServiceProduit implements IServiceProduit {
     }
 
     @Override
-    public List<Produit> getProduitBMC(String mc) {
-        return pr.findByNomContains(mc);
+    public Page<Produit> getProduitBMC(String mc, Pageable p) {
+        return pr.findByNomContains(mc,p);
     }
+
 
     @Override
     public List<Produit> getProduitByCat(Integer idcat) {

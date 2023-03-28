@@ -4,6 +4,8 @@ import com.vermeg.demo.entities.Produit;
 import com.vermeg.demo.service.IServiceCategorie;
 import com.vermeg.demo.service.IServiceProduit;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +18,16 @@ public class ProduitControleur {
     private final IServiceCategorie sc;
 
     @GetMapping("/home")
-    public String getProducts(Model m, @RequestParam(name="mc",defaultValue = "") String mc){
-        m.addAttribute("data",sp.getProduitBMC(mc));
+    public String getProducts(Model m,
+                              @RequestParam(name="mc",defaultValue = "") String mc,
+                              @RequestParam(name="page",defaultValue="1") int page,
+                              @RequestParam(name = "size",defaultValue="5") int size
+
+    ){
+        Page<Produit> pages = sp.getProduitBMC(mc, PageRequest.of(page, size));
+        m.addAttribute("data",pages.getContent());
+        m.addAttribute("currentPage",pages.getNumber());
+        m.addAttribute("pages",new int[pages.getTotalPages()]);
         m.addAttribute("mc",mc);
         return "produits";
     }
