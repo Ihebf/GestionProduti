@@ -11,15 +11,18 @@
     <div class="card">
         <div class="card-header">Liste des produits</div>
         <div class="card-body">
+            <div class="text-end">
+                <a th:href="@{/addProduct}" class="btn btn-success text-end">add product</a>
+            </div>
             <form method="get" th:action="@{/home}">
                 <div class="input-group">
                     <div class="form-outline">
-                        <input type="text" class="form-control" name="mc" >
+                        <input type="text" class="form-control" name="mc" th:value="${mc}"/>
                     </div>
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 </div>
-
             </form>
+
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -28,6 +31,7 @@
                     <th>Prix</th>
                     <th>Quantite</th>
                     <th>Categorie</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,6 +41,8 @@
                     <td th:text="${p.prix}"></td>
                     <td th:text="${p.quantitie}"></td>
                     <td th:text="${p.cat.nom}"></td>
+                    <td><a th:href="@{/delete/{id}(id=${p.id})}" class="btn btn-danger">
+                        <span class="fa fa-trash"></span></a></td>
                 </tr>
                 </tbody>
             </table>
