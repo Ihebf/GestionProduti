@@ -10,28 +10,28 @@
 <div class="container">
     <div class="card-header">Add produit</div>
     <div class="card-body">
-        <form>
+        <form method="post" th:action="@{/save}">
             <div class="form-group">
                 <label for="nom">nom</label>
-                <input type="text" class="form-control" id="nom" placeholder="nom">
+                <input type="text" class="form-control" id="nom" placeholder="nom" name="nom">
             </div>
             <div class="form-group">
                 <label for="prix">prix</label>
-                <input type="number" class="form-control" id="prix" placeholder="prix">
+                <input type="number" class="form-control" id="prix" placeholder="prix" name="prix">
             </div>
             <div class="form-group">
                 <label for="quantite">quantité</label>
-                <input type="number" class="form-control" id="quantite" placeholder="quantite">
+                <input type="number" class="form-control" id="quantite" placeholder="quantitie" name="quantitie">
             </div>
             <div class="form-group">
                 <label for="categorie">Categorie</label>
-                <select name="categorie" id="categorie" required="required">
+                <select name="cat" id="categorie" required="required">
                     <option selected="selected" hidden=""></option>
                     <option th:each="c:${categories}" th:value="${c.id}" th:text="${c.nom}"></option>
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" >Submit</button>
         </form>
     </div>
 </div>
