@@ -24,7 +24,7 @@ public class ProduitControleur {
                               @RequestParam(name = "size",defaultValue="5") int size
 
     ){
-        Page<Produit> pages = sp.getProduitBMC(mc, PageRequest.of(page, size));
+        Page<Produit> pages = sp.getProduitBMC(mc, PageRequest.of(page-1, size));
         m.addAttribute("data",pages.getContent());
         m.addAttribute("currentPage",pages.getNumber());
         m.addAttribute("pages",new int[pages.getTotalPages()]);
