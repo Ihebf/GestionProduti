@@ -9,6 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @AllArgsConstructor
@@ -46,8 +49,8 @@ public class ProduitControleur {
     }
 
     @PostMapping("/save")
-    public String saveProduct(@ModelAttribute Produit produit){
-        sp.saveProduit(produit);
+    public String saveProduct(@ModelAttribute Produit produit, @RequestParam("file") MultipartFile mf) throws IOException {
+        sp.saveProduit(produit,mf);
         return "redirect:/home";
     }
 

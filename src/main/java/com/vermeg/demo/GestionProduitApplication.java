@@ -24,19 +24,19 @@ public class GestionProduitApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        for (int i=0;i<1000;i++){
-            Categorie c1 = new Categorie(null,"informatique",null);
-            Categorie c2 = new Categorie(null,"bureatique",null);
-            Categorie c3 = new Categorie(null,"electronique",null);
+        for (int i=0;i<10;i++){
+            Categorie c1 = new Categorie(null,"Informatique",null);
+            Categorie c2 = new Categorie(null,"Bureatique",null);
+            Categorie c3 = new Categorie(null,"Electronique",null);
             categorieRepository.save(c1);
             categorieRepository.save(c2);
             categorieRepository.save(c3);
 
-            Produit p1 = new Produit(null,"PC"+i,2000d,5,categorieRepository.findById(1).get());
-            Produit p2 = new Produit(null,"souris"+i,3000d,5,categorieRepository.findById(1).get());
-            Produit p3 = new Produit(null,"clavier"+i,4000d,5,categorieRepository.findById(1).get());
-            Produit p4 = new Produit(null,"ecran"+i,2000,5,categorieRepository.findById(1).get());
-            Produit p5 = new Produit(null,"TV"+i,2000d,5,categorieRepository.findById(1).get());
+            Produit p1 = new Produit(null,"PC"+i,2000d,5,categorieRepository.findById(1).get(),null);
+            Produit p2 = new Produit(null,"Souris"+i,3000d,5,categorieRepository.findById(1).get(),null);
+            Produit p3 = new Produit(null,"Clavier"+i,4000d,5,categorieRepository.findById(1).get(),null);
+            Produit p4 = new Produit(null,"Ecran"+i,2000,5,categorieRepository.findById(1).get(),null);
+            Produit p5 = new Produit(null,"TV"+i,2000d,5,categorieRepository.findById(1).get(),null);
             produitRepository.save(p1);
             produitRepository.save(p2);
             produitRepository.save(p3);
