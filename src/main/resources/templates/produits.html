@@ -30,6 +30,7 @@
                 <thead>
                 <tr>
                     <th>#</th>
+                    <th>Image</th>
                     <th>Nom</th>
                     <th>Prix</th>
                     <th>Quantite</th>
@@ -40,6 +41,8 @@
                 <tbody>
                 <tr th:each="p:${data}">
                     <td th:text="${p.id}"></td>
+                    <td th:if="${p.photo==null||p.photo==''}"><img src="/images/empty.jpg" width="50" height="50"></td>
+                    <td th:unless="${p.photo==null || p.photo == ''}"><img th:src="@{$'/photos/'+p.photo}" width="50" height="50"></td>
                     <td th:text="${p.nom}"></td>
                     <td th:text="${p.prix}"></td>
                     <td th:text="${p.quantitie}"></td>
