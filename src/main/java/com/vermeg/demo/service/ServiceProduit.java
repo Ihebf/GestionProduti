@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.util.List;
@@ -21,9 +22,15 @@ public class ServiceProduit implements IServiceProduit {
 
     @Override
     public void saveProduit(Produit p, MultipartFile mf) throws IOException {
-        if(!mf.isEmpty())
-            p.setPhoto(saveImage(mf));
+        if(!mf.isEmpty()){
+            String i = saveImage(mf);
+            p.setPhoto(i);
+        }
+
         pr.save(p);
+
+        List<Produit> l = pr.findAll();
+        l.forEach(ll -> System.out.println("-------->"+ll.getPhoto()));
     }
 
     @Override
@@ -56,7 +63,8 @@ public class ServiceProduit implements IServiceProduit {
         String nomFile = mf.getOriginalFilename();
         String tab[] = nomFile.split("\\.");
         String newName = tab[0] + System.currentTimeMillis() + "." + tab[1];
-        Path p = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/photos");
-        return newName;
+        Path p = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/images/",newName);
+        Files.write(p,mf.getBytes());
+        return nomFile;
     }
 }

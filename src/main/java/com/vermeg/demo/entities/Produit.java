@@ -18,7 +18,7 @@ import com.sun.istack.NotNull;
 public class Produit {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
-    @NotNull @Size(min = 2, max = 30) @Pattern(regexp = "^[A-Z].*", message = "Le nom du produit doit etre en Majuscule")
+    @NotNull @Size(min = 2, max = 30) // @Pattern(regexp = "^[A-Z].*", message = "Le nom du produit doit etre en Majuscule")
     private String nom;
     @Min(0)
     private double prix;

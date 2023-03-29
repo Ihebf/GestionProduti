@@ -49,7 +49,7 @@ public class ProduitControleur {
     }
 
     @PostMapping("/save")
-    public String saveProduct(@ModelAttribute Produit produit, @RequestParam("file") MultipartFile mf) throws IOException {
+    public String saveProduct(@ModelAttribute Produit produit, @RequestParam("file") MultipartFile mf) throws IOException, InterruptedException {
         sp.saveProduit(produit,mf);
         return "redirect:/home";
     }
