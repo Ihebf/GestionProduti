@@ -10,7 +10,7 @@
 <div class="container">
     <div class="card-header">Add produit</div>
     <div class="card-body">
-        <form method="post" th:action="@{/save}">
+        <form method="post" th:action="@{/save}" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nom">nom</label>
                 <input type="text" class="form-control" id="nom" placeholder="nom" name="nom" th:value="${data.nom}">
@@ -30,6 +30,11 @@
                     <option selected="selected" hidden="" ></option>
                     <option th:each="c:${categories}" th:value="${c.id}" th:text="${c.nom}" th:selected="${data.cat!=null && data.cat.id == c.id}"></option>
                 </select>
+                <div>
+                    <label>Photo</label>
+                    <input type="file" accept="image/jpg" name="file">
+                    <input type="hidden" name="photo" th:value="${data.photo}">
+                </div>
             </div>
             <input type="hidden" name="id" th:value="${data.id}">
             <button type="submit" class="btn btn-primary" >Submit</button>
