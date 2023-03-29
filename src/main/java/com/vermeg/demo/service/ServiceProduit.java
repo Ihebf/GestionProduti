@@ -63,8 +63,8 @@ public class ServiceProduit implements IServiceProduit {
         String nomFile = mf.getOriginalFilename();
         String tab[] = nomFile.split("\\.");
         String newName = tab[0] + System.currentTimeMillis() + "." + tab[1];
-        Path p = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/images/",newName);
+        Path p = Paths.get(System.getProperty("user.dir") + "/src/main/resources/photo/",newName);
         Files.write(p,mf.getBytes());
-        return nomFile;
+        return newName;
     }
 }
