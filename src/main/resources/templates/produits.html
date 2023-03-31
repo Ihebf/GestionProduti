@@ -25,7 +25,7 @@
             <div class="card-header">Liste des produits</div>
             <div class="card-body">
                 <div class="text-start">
-                    <a sec:authorize="hasRole('ADMIN')"th:href="@{/addProduct}" class="btn btn-success text-end">add product</a>
+                    <a sec:authorize="hasAuthority('ADMIN')"th:href="@{/addProduct}" class="btn btn-success text-end">add product</a>
                 </div>
                 <form method="get" th:action="@{/home}">
                     <div class="input-group">
@@ -45,7 +45,7 @@
                         <th>Prix</th>
                         <th>Quantite</th>
                         <th>Categorie</th>
-                        <th sec:authorize="hasRole('ADMIN')">Action</th>
+                        <th sec:authorize="hasAuthority('ADMIN')">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -58,9 +58,9 @@
                         <td th:text="${p.quantitie}"></td>
                         <td th:text="${p.cat.nom}"></td>
                         <td>
-                            <a sec:authorize="hasRole('ADMIN')" th:href="@{/delete/{id}(id=${p.id})}" class="btn btn-danger">
+                            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/delete/{id}(id=${p.id})}" class="btn btn-danger">
                                 <span class="fa fa-trash"></span></a>
-                            <a sec:authorize="hasRole('ADMIN')" th:href="@{/edit/{id}(id=${p.id})}" class="btn btn-warning">
+                            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/edit/{id}(id=${p.id})}" class="btn btn-warning">
                                 <span class="fa-solid fa-pen"></span></a>
                         </td>
 

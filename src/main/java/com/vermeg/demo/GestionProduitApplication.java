@@ -1,13 +1,21 @@
 package com.vermeg.demo;
 
+import com.vermeg.demo.entities.AppRole;
+import com.vermeg.demo.entities.AppUser;
 import com.vermeg.demo.entities.Categorie;
 import com.vermeg.demo.entities.Produit;
 import com.vermeg.demo.repositories.CategorieRepository;
 import com.vermeg.demo.repositories.ProduitRepository;
+import com.vermeg.demo.repositories.RoleRepository;
+import com.vermeg.demo.repositories.UserRepository;
+import com.vermeg.demo.security.SecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.ArrayList;
 
 @SpringBootApplication
 public class GestionProduitApplication implements CommandLineRunner {
@@ -16,6 +24,12 @@ public class GestionProduitApplication implements CommandLineRunner {
     ProduitRepository produitRepository;
     @Autowired
     CategorieRepository categorieRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(GestionProduitApplication.class, args);
@@ -43,6 +57,36 @@ public class GestionProduitApplication implements CommandLineRunner {
             produitRepository.save(p4);
             produitRepository.save(p5);
         }
+
+        AppRole role1 = new AppRole();
+        AppRole role2 = new AppRole();
+
+        role1.setRole("USER");
+        role2.setRole("ADMIN");
+
+        ArrayList<AppRole> roles1 = new ArrayList<>();
+        roles1.add(role1);
+
+        ArrayList<AppRole> roles2 = new ArrayList<>();
+        roles2.add(role2);
+
+
+
+        AppUser user1 = new AppUser();
+        AppUser user2 = new AppUser();
+
+        user1.setUsername("user1");
+        user1.setPassword("123");
+        user1.setRoles(roles1);
+
+        user1.setUsername("admin");
+        user1.setPassword("123");
+        user1.setRoles(roles2);
+
+        userRepository.save(user1);
+        userRepository.save(user2);
+        roleRepository.save(role1);
+        roleRepository.save(role2);
 
     }
 
