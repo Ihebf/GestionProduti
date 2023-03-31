@@ -24,12 +24,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/home");
         http.logout()
                 .logoutSuccessUrl("/");
-        http.authorizeHttpRequests()
+        http.authorizeRequests()
                 .antMatchers("/","/index","/images/**")
                 .permitAll();
 
-        http.authorizeHttpRequests()
-                .antMatchers("/delete/**","/addProduct","")
+        http.authorizeRequests()
+                .antMatchers("/delete/**","/addProduct","/save","/edit/**")
+                .hasRole("ADMIN");
+        http.authorizeRequests().anyRequest().authenticated();
 
     }
 
