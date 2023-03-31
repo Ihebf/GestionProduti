@@ -61,4 +61,6 @@ public class ProduitControleur {
         m.addAttribute("categories",sc.getAllCategories());
         return "addProduct";
     }
+
+
 }

@@ -27,11 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/","/index","/images/**")
                 .permitAll();
-
         http.authorizeRequests()
                 .antMatchers("/delete/**","/addProduct","/save","/edit/**")
                 .hasRole("ADMIN");
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests()
+                .anyRequest()
+                .authenticated();
 
     }
 
