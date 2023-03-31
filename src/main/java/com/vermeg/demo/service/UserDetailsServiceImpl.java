@@ -22,12 +22,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser user = ur.findByUsername(username);
+        AppUser user = ur.findByUserName(username);
         List<GrantedAuthority> ga = new ArrayList<>();
 
         user.getRoles()
                 .forEach(r -> ga.add(new SimpleGrantedAuthority(r.getRole())));
 
-        return new User(user.getUsername(),user.getPassword(),ga);
+        return new User(user.getUserName(),user.getPassword(),ga);
     }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -15,9 +16,9 @@ public class AppUser {
 
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
-    private String username;
+    private String userName;
     private String password;
-    @ManyToMany(cascade=CascadeType.ALL)
-    private List<AppRole> roles;
+    @ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    private List<AppRole> roles = new ArrayList<>();
 
 }

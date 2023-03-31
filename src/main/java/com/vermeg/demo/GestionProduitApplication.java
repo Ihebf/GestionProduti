@@ -16,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class GestionProduitApplication implements CommandLineRunner {
@@ -75,19 +76,22 @@ public class GestionProduitApplication implements CommandLineRunner {
         AppUser user1 = new AppUser();
         AppUser user2 = new AppUser();
 
-        user1.setUsername("user1");
-        user1.setPassword("123");
+        user1.setUserName("user1");
+        user1.setPassword("$2a$12$P0b6BBGw6K0w68QuHa9bdexYB3p67Z4iMsjjpE.mths96Fuip3fo6");
         user1.setRoles(roles1);
 
-        user1.setUsername("admin");
-        user1.setPassword("123");
-        user1.setRoles(roles2);
+        user2.setUserName("admin");
+        user2.setPassword("$2a$12$P0b6BBGw6K0w68QuHa9bdexYB3p67Z4iMsjjpE.mths96Fuip3fo6");
+        user2.setRoles(roles2);
 
         userRepository.save(user1);
         userRepository.save(user2);
         roleRepository.save(role1);
         roleRepository.save(role2);
 
+//        System.out.println("---+------>"+userRepository.findByUserName("admin"));
+//        List<AppUser> a = userRepository.findAll();
+//        a.forEach(aa -> System.out.println(aa.getUserName()));
     }
 
 
