@@ -15,6 +15,7 @@ public interface IServiceProduit {
     List <Produit> getProduitByCat(Integer idcat);
     Produit getProduit(Integer id);
     void deleteProduit (Integer id);
+    byte[] getImage(Integer id) throws IOException;
 
 
 }

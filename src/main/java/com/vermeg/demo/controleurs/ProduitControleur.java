@@ -32,6 +32,9 @@ public class ProduitControleur {
         m.addAttribute("currentPage",pages.getNumber());
         m.addAttribute("pages",new int[pages.getTotalPages()]);
         m.addAttribute("mc",mc);
+
+        String path = System.getProperty("user.home") + "/photos/";
+        m.addAttribute("userHome",path);
         return "produits";
     }
 

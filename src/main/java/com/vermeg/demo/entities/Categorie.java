@@ -1,5 +1,6 @@
 package com.vermeg.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class Categorie {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String nom;
+    @JsonIgnore
     @OneToMany(mappedBy = "cat",cascade = CascadeType.ALL)
     private List<Produit> produitList;
 }
