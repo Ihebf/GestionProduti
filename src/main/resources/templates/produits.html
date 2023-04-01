@@ -37,6 +37,7 @@
                         <th>Prix</th>
                         <th>Quantite</th>
                         <th>Categorie</th>
+                        <th>Fourniseur</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -44,19 +45,23 @@
                     <tr th:each="p:${data}">
                         <td th:text="${p.id}"></td>
                         <td th:if="${p.photo==null}"><img src="/images/empty.jpg" width="50" height="50"></td>
-                        <td th:unless="${p.photo==null}"><img th:src="@{${userHome+'/'+p.photo}}" width="50" height="50">
+                        <td th:unless="${p.photo==null}"><img th:src="@{${userHome}+'/'+${p.photo}}" width="50" height="50">
                         </td>
                         <td th:text="${p.nom}"></td>
                         <td th:text="${p.prix}"></td>
                         <td th:text="${p.quantitie}"></td>
                         <td th:text="${p.cat.nom}"></td>
                         <td>
+                            <select name="fourniseurs" id="fourniseurs">
+                                <option th:each="f:${p.fourniseurs}" th:value="${f.id}" th:text="${f.name}"></option>
+                            </select>
+                        </td>
+                        <td>
                             <a th:href="@{/delete/{id}(id=${p.id})}" class="btn btn-danger">
                                 <span class="fa fa-trash"></span></a>
                             <a th:href="@{/edit/{id}(id=${p.id})}" class="btn btn-warning">
                                 <span class="fa-solid fa-pen"></span></a>
                         </td>
-
                     </tr>
                     </tbody>
                 </table>
